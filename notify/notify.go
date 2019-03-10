@@ -8,8 +8,9 @@ import (
 )
 
 type Notifyer struct {
-	line *linebot.Client
-	ID   string
+	line     *linebot.Client
+	ID       string
+	PUBLICID string
 }
 
 func NewNotifyer(config *env.Config) (*Notifyer, error) {
@@ -20,6 +21,7 @@ func NewNotifyer(config *env.Config) (*Notifyer, error) {
 		return &n, err
 	}
 	n.ID = config.ID
+	n.PUBLICID = config.PUBLICID
 	return &n, nil
 }
 
@@ -27,6 +29,15 @@ func (n *Notifyer) Notify(message string) {
 	log.Println(message)
 	postMessage := linebot.NewTextMessage(message)
 	_, err := n.line.PushMessage(n.ID, postMessage).Do()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func (n *Notifyer) PublicNotify(message string) {
+	log.Println(message)
+	postMessage := linebot.NewTextMessage(message)
+	_, err := n.line.PushMessage(n.PUBLICID, postMessage).Do()
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	robot "github.com/Candy_Scrape/Robot"
 	"github.com/Candy_Scrape/env"
 	notify "github.com/Candy_Scrape/notify"
 	"github.com/Candy_Scrape/redisdb"
+	robot "github.com/Candy_Scrape/robot"
 	"github.com/robfig/cron"
 )
 

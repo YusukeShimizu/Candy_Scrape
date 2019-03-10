@@ -7,11 +7,12 @@ import (
 type (
 	// Config of the app.
 	Config struct {
-		Env    string `required:"true" envconfig:"ENV"`
-		Pace   string `required:"true" envconfig:"PACE"`
-		Secret string `required:"true" envconfig:"SECRET"`
-		Token  string `required:"true" envconfig:"TOKEN"`
-		ID     string `required:"true" envconfig:"ID"`
+		Env      string `required:"true" envconfig:"ENV"`
+		Pace     string `required:"true" envconfig:"PACE"`
+		Secret   string `required:"true" envconfig:"SECRET"`
+		Token    string `required:"true" envconfig:"TOKEN"`
+		ID       string `required:"true" envconfig:"ID"`
+		PUBLICID string `required:"true" envconfig:"ID"`
 	}
 )
 
