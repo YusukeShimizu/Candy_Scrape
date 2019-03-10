@@ -1,0 +1,20 @@
+version: "3"
+services:
+  candy-scrape:
+    container_name: candy-scrape
+    environment:
+      - ENV=${ENV}
+      - PACE=${PACE}
+      - SURF_DEBUG_HEADERS=${SURF_DEBUG_HEADERS}
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/go/src/github.com/Candy_Scrape
+    working_dir: /go/src/github.com/Candy_Scrape
+    links:
+      - redis
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379

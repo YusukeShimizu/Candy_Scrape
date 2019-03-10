@@ -18,6 +18,60 @@
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:33082c63746b464db3d1c2c07a1396d860484d97fe857ef9e8668a9b406db09f"
+  name = "github.com/go-redis/redis"
+  packages = [
+    ".",
+    "internal",
+    "internal/consistenthash",
+    "internal/hashtag",
+    "internal/pool",
+    "internal/proto",
+    "internal/util",
+  ]
+  pruneopts = "UT"
+  revision = "d22fde8721cc915a55aeb6b00944a76a92bfeb6e"
+  version = "v6.15.2"
+
+[[projects]]
+  digest = "1:b57c6ad9966352b7e7ef815de0c2a33188d433e94ea48cabf2f76f5151f8b3e1"
+  name = "github.com/headzoo/surf"
+  packages = [
+    "agent",
+    "browser",
+    "errors",
+    "jar",
+    "util",
+  ]
+  pruneopts = "UT"
+  revision = "60198774ccce43e1d26c80e961497b7d262460b3"
+  version = "v1.0.0"
+
+[[projects]]
+  digest = "1:edbef42561faa44c19129b68d1e109fbc1647f63239250391eadc8d0e7c9f669"
+  name = "github.com/kelseyhightower/envconfig"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f611eb38b3875cc3bd991ca91c51d06446afa14c"
+  version = "v1.3.0"
+
+[[projects]]
+  digest = "1:8792ec0f7f62024e10bcf3292af5e5a4aea113894516c13593705ef0c6e52c09"
+  name = "github.com/line/line-bot-sdk-go"
+  packages = ["linebot"]
+  pruneopts = "UT"
+  revision = "a4adc5b5b1b35a40263326aec989b5b5a6221aff"
+  version = "v5.0.0"
+
+[[projects]]
+  digest = "1:ed615c5430ecabbb0fb7629a182da65ecee6523900ac1ac932520860878ffcad"
+  name = "github.com/robfig/cron"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "b41be1df696709bb6395fe435af20370037c0b4c"
+  version = "v1.1"
+
+[[projects]]
   branch = "master"
   digest = "1:de4815ce3ca5b624af2733716ecd471de1ef50cda8afec39491aab517f73139c"
   name = "golang.org/x/net"
@@ -28,9 +82,25 @@
   pruneopts = "UT"
   revision = "16b79f2e4e95ea23b2bf9903c9809ff7b013ce85"
 
+[[projects]]
+  digest = "1:18ea5f27fab5210969a334e233c7d1b0fac65bc3cd57cd96e273063c39f38fdf"
+  name = "gopkg.in/headzoo/surf.v1"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "60198774ccce43e1d26c80e961497b7d262460b3"
+  version = "v1.0.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/PuerkitoBio/goquery"]
+  input-imports = [
+    "github.com/PuerkitoBio/goquery",
+    "github.com/go-redis/redis",
+    "github.com/headzoo/surf/browser",
+    "github.com/kelseyhightower/envconfig",
+    "github.com/line/line-bot-sdk-go/linebot",
+    "github.com/robfig/cron",
+    "gopkg.in/headzoo/surf.v1",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
