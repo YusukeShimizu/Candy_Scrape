@@ -21,7 +21,7 @@ func TestPatrolKetakinet(t *testing.T) {
 		log.Fatal(err)
 	}
 	robot := NewRobot(*notifyer, *redis)
-	err = robot.PatrolKeyakinet()
+	err = robot.PatrolSetagayaPark()
 	if err != nil {
 		t.Fatal(err)
 	}

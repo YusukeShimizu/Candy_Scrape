@@ -28,7 +28,7 @@ func main() {
 	robot := robot.NewRobot(*notifyer, *redis)
 	cron := cron.New()
 	cron.AddFunc(config.Pace, func() {
-		err := robot.PatrolKeyakinet()
+		err := robot.PatrolSetagayaPark()
 		if err != nil {
 			shutdown <- err
 		}

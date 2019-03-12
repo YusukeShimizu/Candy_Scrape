@@ -72,6 +72,18 @@
   version = "v1.1"
 
 [[projects]]
+  digest = "1:d991add0e4c1a37e04a10821595be86f79bd30632e51a654c3250eaeb75e26eb"
+  name = "github.com/yut-kt/goholiday"
+  packages = [
+    ".",
+    "config",
+    "nholidays",
+  ]
+  pruneopts = "UT"
+  revision = "8085670e50d91de9c74352681ecb18429d77f93d"
+  version = "0.1.6"
+
+[[projects]]
   branch = "master"
   digest = "1:de4815ce3ca5b624af2733716ecd471de1ef50cda8afec39491aab517f73139c"
   name = "golang.org/x/net"
@@ -100,6 +112,7 @@
     "github.com/kelseyhightower/envconfig",
     "github.com/line/line-bot-sdk-go/linebot",
     "github.com/robfig/cron",
+    "github.com/yut-kt/goholiday",
     "gopkg.in/headzoo/surf.v1",
   ]
   solver-name = "gps-cdcl"

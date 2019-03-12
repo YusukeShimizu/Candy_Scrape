@@ -33,12 +33,3 @@ func (n *Notifyer) Notify(message string) {
 		log.Fatal(err)
 	}
 }
-
-func (n *Notifyer) PublicNotify(message string) {
-	log.Println(message)
-	postMessage := linebot.NewTextMessage(message)
-	_, err := n.line.PushMessage(n.PUBLICID, postMessage).Do()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
