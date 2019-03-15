@@ -52,3 +52,19 @@ func (r *Redis) Get(key string) (string, bool, error) {
 	}
 	return val, true, nil
 }
+
+func (r *Redis) HSet(key, field, value string) error {
+	err := r.client.HSet(key, field, value).Err()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *Redis) HGet(key, field string) (string, error) {
+	val, err := r.client.HGet(key, field).Result()
+	if err != redis.Nil && err != nil {
+		return val, err
+	}
+	return val, nil
+}

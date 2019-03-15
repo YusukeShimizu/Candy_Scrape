@@ -13,6 +13,7 @@ type (
 		Token    string `required:"true" envconfig:"TOKEN"`
 		ID       string `required:"true" envconfig:"ID"`
 		PUBLICID string `required:"true" envconfig:"ID"`
+		PORT     string `required:"true" envconfig:"PORT"`
 	}
 )
 

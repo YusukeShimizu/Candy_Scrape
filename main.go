@@ -32,7 +32,20 @@ func main() {
 		if err != nil {
 			shutdown <- err
 		}
+		err = robot.PatrolHanegiPark()
+		if err != nil {
+			shutdown <- err
+		}
+		err = robot.PatrolNogemachiPark()
+		if err != nil {
+			shutdown <- err
+		}
+		err = robot.PatrolSougouPark()
+		if err != nil {
+			shutdown <- err
+		}
 	})
+	go notifyer.Wait()
 	cron.Start()
 	<-shutdown
 	log.Fatal(shutdown)
