@@ -378,6 +378,7 @@ func (r *Robot) PatrolSougouPark() error {
 		time := []string{}
 		s.Find("table > thead > tr > th").Each(func(j int, s2 *goquery.Selection) {
 			time = append(time, s2.Text())
+			fmt.Println(s2.Text())
 		})
 		dimention := []value{}
 		s.Find("table > tbody > tr").Each(func(k int, s3 *goquery.Selection) {

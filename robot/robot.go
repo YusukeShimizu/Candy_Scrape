@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/Candy_Scrape/notify"
@@ -54,9 +55,11 @@ func (r *Robot) filterTarget(place string, findeds []finded) ([]finded, error) {
 		if !(status == finded.status) {
 			r.redis.HSet(place, finded.date.Format("2006-01-02"), finded.status)
 			log.Println(fmt.Sprintf("%vの%vの予約状態が%vに変更されました。", finded.date, place, finded.status))
-			if (reflect.DeepEqual([]byte(finded.status), []byte("△")) || reflect.DeepEqual([]byte(finded.status), []byte("○"))) && !goholiday.IsBusinessDay(finded.date) {
-				log.Println(fmt.Sprintf("%v %v曜日の%vに空きがでました。", finded.date.Format("2006-01-02"), wdays[finded.date.Weekday()], place))
-				filtered = append(filtered, finded)
+			if reflect.DeepEqual([]byte(finded.status), []byte("△")) || reflect.DeepEqual([]byte(finded.status), []byte("○")) {
+				if !goholiday.IsBusinessDay(finded.date) {
+					log.Println(fmt.Sprintf("%v %v曜日の%vに空きがでました。", finded.date.Format("2006-01-02"), wdays[finded.date.Weekday()], place))
+					filtered = append(filtered, finded)
+				}
 			}
 		}
 	}
@@ -68,7 +71,15 @@ func (r *Robot) patrol(park string, results []result) error {
 		for _, d := range re.dimention {
 			for i, s := range d.status {
 				if reflect.DeepEqual([]byte(s), []byte("○")) {
-					r.notifier.Notify(fmt.Sprintf("%v %vの%vに空きができました。明日12時予約します？", re.time[0], re.time[i], park))
+					morning, err := time.Parse("15:04", "12:00")
+					hitTime, err := time.Parse("15:04", strings.Split(re.time[i], "～")[0])
+					fmt.Println(morning, hitTime)
+					if err != nil {
+						return err
+					}
+					if hitTime.Before(morning) {
+						r.notifier.Notify(fmt.Sprintf("%v %vの%vに空きができました。明日12時予約します？", re.time[0], re.time[i], park))
+					}
 				}
 			}
 		}

@@ -58,7 +58,7 @@ func (n *Notifyer) Wait() {
 				log.Println(event.Postback.Data)
 				if event.Postback.Data == "予約依頼" {
 					postMessage := linebot.NewTextMessage("やり方勉強中・・・、こんど教えてください！")
-					_, err := n.line.PushMessage(n.ID, postMessage).Do()
+					_, err := n.line.ReplyMessage(event.ReplyToken, postMessage).Do()
 					if err != nil {
 						log.Fatal(err)
 					}
