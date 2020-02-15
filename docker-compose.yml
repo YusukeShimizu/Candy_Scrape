@@ -14,8 +14,8 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     volumes:
-      - .:/go/src/github.com/Candy_Scrape
-    working_dir: /go/src/github.com/Candy_Scrape
+      - .:/go/src/github.com/YusukeShimizu/Candy_Scrape
+    working_dir: /go/src/github.com/YusukeShimizu/Candy_Scrape
     links:
       - redis
   redis:

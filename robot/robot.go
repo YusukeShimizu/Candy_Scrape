@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Candy_Scrape/notify"
-	"github.com/Candy_Scrape/redisdb"
+	"github.com/YusukeShimizu/Candy_Scrape/notify"
+	"github.com/YusukeShimizu/Candy_Scrape/redisdb"
 	"github.com/headzoo/surf/browser"
 	"github.com/yut-kt/goholiday"
 	surf "gopkg.in/headzoo/surf.v1"

@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"github.com/Candy_Scrape/env"
-	notify "github.com/Candy_Scrape/notify"
-	"github.com/Candy_Scrape/redisdb"
-	robot "github.com/Candy_Scrape/robot"
+	"github.com/YusukeShimizu/Candy_Scrape/env"
+	notify "github.com/YusukeShimizu/Candy_Scrape/notify"
+	"github.com/YusukeShimizu/Candy_Scrape/redisdb"
+	robot "github.com/YusukeShimizu/Candy_Scrape/robot"
 	"github.com/robfig/cron"
 )
 
@@ -27,7 +27,7 @@ func main() {
 	}
 	robot := robot.NewRobot(*notifyer, *redis)
 	cron := cron.New()
-	cron.AddFunc(config.Pace, func() {
+	err = cron.AddFunc(config.Pace, func() {
 		err := robot.PatrolSetagayaPark()
 		if err != nil {
 			shutdown <- err
@@ -45,6 +45,9 @@ func main() {
 			shutdown <- err
 		}
 	})
+	if err != nil {
+		log.Fatal(err)
+	}
 	go notifyer.Wait()
 	cron.Start()
 	<-shutdown

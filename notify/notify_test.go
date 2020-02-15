@@ -3,7 +3,7 @@ package notify
 import (
 	"testing"
 
-	"github.com/Candy_Scrape/env"
+	"github.com/YusukeShimizu/Candy_Scrape/env"
 )
 
 func TestNotify(t *testing.T) {

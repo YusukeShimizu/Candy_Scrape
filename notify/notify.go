@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Candy_Scrape/env"
+	"github.com/YusukeShimizu/Candy_Scrape/env"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
