@@ -10,7 +10,6 @@ import (
 	"github.com/YusukeShimizu/Candy_Scrape/notify"
 	"github.com/YusukeShimizu/Candy_Scrape/redisdb"
 	"github.com/headzoo/surf/browser"
-	"github.com/yut-kt/goholiday"
 	surf "gopkg.in/headzoo/surf.v1"
 )
 
@@ -56,10 +55,10 @@ func (r *Robot) filterTarget(place string, findeds []finded) ([]finded, error) {
 			r.redis.HSet(place, finded.date.Format("2006-01-02"), finded.status)
 			log.Println(fmt.Sprintf("%vの%vの予約状態が%vに変更されました。", finded.date, place, finded.status))
 			if reflect.DeepEqual([]byte(finded.status), []byte("△")) || reflect.DeepEqual([]byte(finded.status), []byte("○")) {
-				if !goholiday.IsBusinessDay(finded.date) {
-					log.Println(fmt.Sprintf("%v %v曜日の%vに空きがでました。", finded.date.Format("2006-01-02"), wdays[finded.date.Weekday()], place))
-					filtered = append(filtered, finded)
-				}
+				//if !goholiday.IsBusinessDay(finded.date) {
+				log.Println(fmt.Sprintf("%v %v曜日の%vに空きがでました。", finded.date.Format("2006-01-02"), wdays[finded.date.Weekday()], place))
+				filtered = append(filtered, finded)
+				//}
 			}
 		}
 	}

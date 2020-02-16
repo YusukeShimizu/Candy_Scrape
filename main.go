@@ -2,12 +2,12 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/YusukeShimizu/Candy_Scrape/env"
 	notify "github.com/YusukeShimizu/Candy_Scrape/notify"
 	"github.com/YusukeShimizu/Candy_Scrape/redisdb"
 	robot "github.com/YusukeShimizu/Candy_Scrape/robot"
-	"github.com/robfig/cron"
 )
 
 func main() {
@@ -26,30 +26,32 @@ func main() {
 		log.Fatal(err)
 	}
 	robot := robot.NewRobot(*notifyer, *redis)
-	cron := cron.New()
-	err = cron.AddFunc(config.Pace, func() {
-		err := robot.PatrolSetagayaPark()
-		if err != nil {
-			shutdown <- err
+	go func() {
+		for {
+			err := robot.PatrolSetagayaPark()
+			if err != nil {
+				shutdown <- err
+			}
+			err = robot.PatrolHanegiPark()
+			if err != nil {
+				shutdown <- err
+			}
+			err = robot.PatrolNogemachiPark()
+			if err != nil {
+				shutdown <- err
+			}
+			err = robot.PatrolSougouPark()
+			if err != nil {
+				shutdown <- err
+			}
+			time.Sleep(600 * time.Second)
 		}
-		err = robot.PatrolHanegiPark()
-		if err != nil {
-			shutdown <- err
-		}
-		err = robot.PatrolNogemachiPark()
-		if err != nil {
-			shutdown <- err
-		}
-		err = robot.PatrolSougouPark()
-		if err != nil {
-			shutdown <- err
-		}
-	})
+	}()
 	if err != nil {
 		log.Fatal(err)
 	}
 	go notifyer.Wait()
-	cron.Start()
+
 	<-shutdown
 	log.Fatal(shutdown)
 

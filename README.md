@@ -17,26 +17,28 @@ PUBLICID string `required:"true" envconfig:"ID"`
 PORT     string `required:"true" envconfig:"PORT"`
 ```
 
-#### Run on local.
-
+# Getting started
+Build image.
 ```sh
-docker-compose up
-docker run candy-scrape go run main.go
+$ docker build . -t gcr.io/<PROJECT_NAME>/candy_scrape:latest --no-cache
 ```
 
-#### Deploy
-
-At local
+Push image.
 ```sh
-docker build -t xxx/xxx .
-docker push xxx/xxx .
-```
-At server
-```sh
-docker pull xxx/xxx
-docker run --name redis -d redis redis-server --appendonly yes
-docker run -d -p port:port --restart=always --env-file=env.txt --link <redisid>:redis <appid> go run main.go
+docker push gcr.io/<PROJECT_NAME>/candy_scrape:latest
 ```
 
-## TODO
-1. Book system.
+Set .env as secret.
+
+```
+cp .env.sample .env
+kubectl create secret generic candy-scrape-secret --from-env-file=.env
+```
+
+Apply yamls.
+
+```sh
+$ sed -i  "bak" "s/your-project-ID/<PROJECT_NAME>/g" StatefulSet.yaml
+$ kubectl apply -f StatefulSet.yaml --record
+```
+Wait 5 minutes☕️ and then login to container.

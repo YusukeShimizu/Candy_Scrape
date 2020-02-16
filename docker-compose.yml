@@ -5,7 +5,6 @@ services:
     environment:
       - ENV=${ENV}
       - PACE=${PACE}
-      - SURF_DEBUG_HEADERS=${SURF_DEBUG_HEADERS}
       - SECRET=${SECRET}
       - TOKEN=${TOKEN}
       - ID=${ID}

@@ -9,3 +9,5 @@ debug
 .idea/
 *.iml
 env.txt
+.env
+StatefulSet.yaml

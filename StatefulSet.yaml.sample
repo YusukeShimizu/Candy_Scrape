@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: candy-scrape
+  labels:
+    name: candy-scrape
+spec:
+  selector:
+    matchLabels:
+      app: candy-scrape # Label selector that determines which Pods belong to the StatefulSet
+                 # Must match spec: template: metadata: labels
+  serviceName: "candy-scrape"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: candy-scrape # Pod template's label selector
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: candy-scrape
+        envFrom:
+        - secretRef:
+            name: candy-scrape-secret
+        image: gcr.io/<projectid>/candy_scrape:latest
+        command: ["./main"]
+      - name: redis
+        image: marketplace.gcr.io/google/redis4
+        ports:
+          - containerPort: 6379
+        volumeMounts:
+          - name: redisdata
+            mountPath: /data
+            subPath: redisdata
+  volumeClaimTemplates:
+  - metadata:
+      name: redisdata
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi

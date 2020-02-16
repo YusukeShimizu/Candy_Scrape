@@ -10,6 +10,8 @@ require (
 	github.com/headzoo/ut v0.0.0-20181013193318-a13b5a7a02ca // indirect
 	github.com/kelseyhightower/envconfig v1.3.0
 	github.com/line/line-bot-sdk-go v5.0.0+incompatible
+	github.com/onsi/ginkgo v1.12.0 // indirect
+	github.com/onsi/gomega v1.9.0 // indirect
 	github.com/robfig/cron v1.2.0
 	github.com/yut-kt/goholiday v0.0.0-20171118074514-8085670e50d9
 	golang.org/x/net v0.0.0-20190301231341-16b79f2e4e95

@@ -11,11 +11,11 @@ import (
 
 func (r *Robot) PatrolSetagayaPark() error {
 
-	err := r.bow.Open("http://www.city.setagaya.lg.jp/kurashi/107/165/819/index.html")
+	err := r.bow.Open("https://www.city.setagaya.lg.jp/mokuji/kusei/010/003/index.html")
 	if err != nil {
 		return err
 	}
-	err = r.bow.Click("#content > div > p > a")
+	err = r.bow.Click("#content > div:nth-child(3) > div.article > div > p:nth-child(1) > a")
 	if err != nil {
 		return err
 	}
@@ -112,7 +112,7 @@ func (r *Robot) PatrolHanegiPark() error {
 	if err != nil {
 		return err
 	}
-	err = r.bow.Click("#content > div > p > a")
+	err = r.bow.Click("#content > div:nth-child(3) > div.article > div > p:nth-child(1) > a")
 	if err != nil {
 		return err
 	}
@@ -209,7 +209,7 @@ func (r *Robot) PatrolNogemachiPark() error {
 	if err != nil {
 		return err
 	}
-	err = r.bow.Click("#content > div > p > a")
+	err = r.bow.Click("#content > div:nth-child(3) > div.article > div > p:nth-child(1) > a")
 	if err != nil {
 		return err
 	}
@@ -307,7 +307,7 @@ func (r *Robot) PatrolSougouPark() error {
 	if err != nil {
 		return err
 	}
-	err = r.bow.Click("#content > div > p > a")
+	err = r.bow.Click("#content > div:nth-child(3) > div.article > div > p:nth-child(1) > a")
 	if err != nil {
 		return err
 	}
